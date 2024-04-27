@@ -1,0 +1,9 @@
+{
+  "Database": {
+    "ConnectionString": "Server=.;Database=USE Northwind;
+;User Id=NorthwindLoginName;Password=LoginToDB2024;"
+  },
+  "Logging": {
+    "LogLevel": "Debug"
+  }
+}
