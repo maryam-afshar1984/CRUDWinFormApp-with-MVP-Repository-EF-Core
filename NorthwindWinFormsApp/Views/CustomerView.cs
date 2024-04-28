@@ -33,17 +33,19 @@ namespace NorthwindWinFormsApp.Views
         //private string contactName;
         //private string companyName;
         //private string customerId;
-         
+
         //Cunstractor
         public CustomerView()
         {
             InitializeComponent();
             AssociateAndRaiseViewEvents();
             myTabControl.TabPages.Remove(tabPageCustomerDetales);
+            btnExit.Click += delegate { this.Close(); };
         }
 
         private void AssociateAndRaiseViewEvents()
         {
+            //Searche or read
             btnSearch.Click += delegate { SearchEvent?.Invoke(this, EventArgs.Empty); };
             txtCustomerID.KeyDown += (s, a) =>
             {
@@ -52,7 +54,51 @@ namespace NorthwindWinFormsApp.Views
                     SearchEvent?.Invoke(this, EventArgs.Empty);
                 }
             };
-            //other btn
+            //Add new or insert
+            btnAdd.Click += delegate
+            { 
+                AddNewEvent?.Invoke(this, EventArgs.Empty);
+                myTabControl.TabPages.Remove(tabPageCustomerList);
+                myTabControl.TabPages.Add(tabPageCustomerDetales);
+                tabPageCustomerDetales.Text = "Add new customer";
+            };
+            //Edit or update
+            btnUpdate.Click += delegate 
+            { 
+                EditEvent?.Invoke(this, EventArgs.Empty);
+                myTabControl.TabPages.Remove(tabPageCustomerList);
+                myTabControl.TabPages.Add(tabPageCustomerDetales);
+                tabPageCustomerDetales.Text = "Edit customer";
+            };
+            //Delete
+            btnDelete.Click += delegate 
+            { 
+                var result = MessageBox.Show("Are you sure you want to delete the selected customer?","Warning",MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    DeleteEvent?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show(Message);
+                } 
+            };
+            //Save changes
+            btnSave.Click += delegate 
+            { 
+                SaveEvent?.Invoke(this, EventArgs.Empty);
+                if (isSuccessful)
+                {
+                    myTabControl.TabPages.Remove(tabPageCustomerDetales);
+                    myTabControl.TabPages.Add(tabPageCustomerList);
+                }
+                MessageBox.Show(Message);
+            };
+            //Cancel
+            btnCancel.Click += delegate 
+            { 
+                CancleEvent?.Invoke(this, EventArgs.Empty);
+                myTabControl.TabPages.Remove(tabPageCustomerDetales);
+                myTabControl.TabPages.Add(tabPageCustomerList);
+            };
         }
 
         //Properties
@@ -96,7 +142,7 @@ namespace NorthwindWinFormsApp.Views
             get { return txtPostalCode.Text; }
             set { txtPostalCode.Text = value; }
         }
-        public string Country 
+        public string Country
         {
             get { return txtCountry.Text; }
             set { txtCountry.Text = value; }
@@ -106,30 +152,30 @@ namespace NorthwindWinFormsApp.Views
             get { return txtPhone.Text; }
             set { txtPhone.Text = value; }
         }
-        public string Fax 
+        public string Fax
         {
             get { return txtFax.Text; }
             set { txtFax.Text = value; }
         }
-        public string SearchValue 
+        public string SearchValue
         {
             get { return txtCustomerID.Text; }
             set { txtCustomerID.Text = value; }
         }
-        public bool IsEdit 
+        public bool IsEdit
         {
             get { return isEdit; }
             set { isEdit = value; }
         }
-        public bool IsSuccessful 
+        public bool IsSuccessful
         {
             get { return isSuccessful; }
             set { isSuccessful = value; }
         }
-        public string Message 
+        public string Message
         {
             get { return message; }
-            set { Message = value; }
+            set { message = value; }
         }
         //string ICustomerView.CompanyName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         //string ICustomerView.Region { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -150,6 +196,28 @@ namespace NorthwindWinFormsApp.Views
             {
                 CustomerDataGridView.DataSource = customerList;
             }
+        }
+
+        //Singleton Pattern for opening only one form
+        private static CustomerView customerInstance;
+        public static CustomerView GetCustomerInstance(Form parentContainer)
+        {
+            if (customerInstance == null || customerInstance.IsDisposed)
+            {
+                customerInstance = new CustomerView();
+                customerInstance.MdiParent = parentContainer;
+                customerInstance.FormBorderStyle = FormBorderStyle.None;
+                customerInstance.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                if (customerInstance.WindowState == FormWindowState.Minimized)
+                {
+                    customerInstance.WindowState = FormWindowState.Normal;
+                }
+                customerInstance.BringToFront();
+            }
+            return customerInstance;
         }
 
     }

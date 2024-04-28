@@ -62,21 +62,25 @@
             lblContactName = new Label();
             lblCompanyName = new Label();
             lblCustomerCode = new Label();
+            btnExit = new Button();
+            panel1 = new Panel();
+            lblTitle = new Label();
             myTabControl.SuspendLayout();
             tabPageCustomerList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CustomerDataGridView).BeginInit();
             tabPageCustomerDetales.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // myTabControl
             // 
             myTabControl.Controls.Add(tabPageCustomerList);
             myTabControl.Controls.Add(tabPageCustomerDetales);
-            myTabControl.Location = new Point(10, 11);
+            myTabControl.Location = new Point(11, 43);
             myTabControl.Margin = new Padding(2, 3, 2, 3);
             myTabControl.Name = "myTabControl";
             myTabControl.SelectedIndex = 0;
-            myTabControl.Size = new Size(664, 466);
+            myTabControl.Size = new Size(1094, 452);
             myTabControl.TabIndex = 0;
             // 
             // tabPageCustomerList
@@ -93,7 +97,7 @@
             tabPageCustomerList.Margin = new Padding(2, 3, 2, 3);
             tabPageCustomerList.Name = "tabPageCustomerList";
             tabPageCustomerList.Padding = new Padding(2, 3, 2, 3);
-            tabPageCustomerList.Size = new Size(656, 437);
+            tabPageCustomerList.Size = new Size(1086, 423);
             tabPageCustomerList.TabIndex = 0;
             tabPageCustomerList.Text = "Customer List";
             tabPageCustomerList.UseVisualStyleBackColor = true;
@@ -103,12 +107,12 @@
             CustomerDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             CustomerDataGridView.Location = new Point(15, 65);
             CustomerDataGridView.Name = "CustomerDataGridView";
-            CustomerDataGridView.Size = new Size(632, 366);
+            CustomerDataGridView.Size = new Size(1067, 366);
             CustomerDataGridView.TabIndex = 6;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(327, 15);
+            btnUpdate.Location = new Point(341, 10);
             btnUpdate.Margin = new Padding(2, 3, 2, 3);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(69, 30);
@@ -118,7 +122,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(400, 15);
+            btnDelete.Location = new Point(414, 10);
             btnDelete.Margin = new Padding(2, 3, 2, 3);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(69, 30);
@@ -128,7 +132,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(473, 15);
+            btnAdd.Location = new Point(487, 10);
             btnAdd.Margin = new Padding(2, 3, 2, 3);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(69, 30);
@@ -139,7 +143,7 @@
             // btnSearch
             // 
             btnSearch.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.Location = new Point(254, 15);
+            btnSearch.Location = new Point(268, 10);
             btnSearch.Margin = new Padding(2, 3, 2, 3);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(69, 30);
@@ -194,11 +198,11 @@
             tabPageCustomerDetales.Controls.Add(lblCompanyName);
             tabPageCustomerDetales.Controls.Add(lblCustomerCode);
             tabPageCustomerDetales.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tabPageCustomerDetales.Location = new Point(4, 25);
+            tabPageCustomerDetales.Location = new Point(4, 24);
             tabPageCustomerDetales.Margin = new Padding(2, 3, 2, 3);
             tabPageCustomerDetales.Name = "tabPageCustomerDetales";
             tabPageCustomerDetales.Padding = new Padding(2, 3, 2, 3);
-            tabPageCustomerDetales.Size = new Size(656, 437);
+            tabPageCustomerDetales.Size = new Size(1086, 424);
             tabPageCustomerDetales.TabIndex = 1;
             tabPageCustomerDetales.Text = "Customer Detales";
             tabPageCustomerDetales.UseVisualStyleBackColor = true;
@@ -410,11 +414,40 @@
             lblCustomerCode.TabIndex = 0;
             lblCustomerCode.Text = "Customer ID:";
             // 
+            // btnExit
+            // 
+            btnExit.Location = new Point(1052, 6);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(34, 23);
+            btnExit.TabIndex = 1;
+            btnExit.Text = "X";
+            btnExit.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(lblTitle);
+            panel1.Controls.Add(btnExit);
+            panel1.Location = new Point(11, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1090, 34);
+            panel1.TabIndex = 2;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblTitle.Location = new Point(19, 6);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(93, 18);
+            lblTitle.TabIndex = 2;
+            lblTitle.Text = "Customer";
+            // 
             // CustomerView
             // 
             AutoScaleDimensions = new SizeF(8F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(673, 489);
+            ClientSize = new Size(1116, 507);
+            Controls.Add(panel1);
             Controls.Add(myTabControl);
             Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(3, 4, 3, 4);
@@ -426,6 +459,8 @@
             ((System.ComponentModel.ISupportInitialize)CustomerDataGridView).EndInit();
             tabPageCustomerDetales.ResumeLayout(false);
             tabPageCustomerDetales.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -465,5 +500,8 @@
         private Button btnCancel;
         private Button btnSave;
         private TextBox txtAddress;
+        private Button btnExit;
+        private Panel panel1;
+        private Label lblTitle;
     }
 }

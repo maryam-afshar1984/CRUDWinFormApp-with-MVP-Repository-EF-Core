@@ -27,10 +27,10 @@ namespace NorthwindWinFormsApp.Presenters
             //Sunscribe event handler methods to view events
             this._customerView.SearchEvent += SearchCustomer;
             this._customerView.AddNewEvent += AddNewCustomer;
-            this._customerView.EditEvent += EditCustomer;
-            this._customerView.DeleteEvent += DeleteCustomer;
+            this._customerView.EditEvent += LoadSelectedCustomerToEdit;
+            this._customerView.DeleteEvent += DeleteSelectedCustomer;
             this._customerView.SaveEvent += SaveCustomer;
-            this._customerView.CancleEvent += CancleCustomer;
+            this._customerView.CancleEvent += CancleAction;
 
             //Set Customer Binding Source
             this._customerView.SetCustomerListBindingSource(_customerbindingSource);
@@ -39,6 +39,7 @@ namespace NorthwindWinFormsApp.Presenters
             //Show View
             this._customerView.Show();
         }
+
 
         //Methods
         private void LoadAllCustomerList()
@@ -60,32 +61,107 @@ namespace NorthwindWinFormsApp.Presenters
                 _customerList = this._customerRepository.GetAll();
             }
             _customerbindingSource.DataSource = _customerList;
+        }     
+
+        private void AddNewCustomer(object? sender, EventArgs e)
+        {
+            _customerView.IsEdit = false;
         }
 
-        private void CancleCustomer(object? sender, EventArgs e)
+        private void LoadSelectedCustomerToEdit(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var customer = (Customer)_customerbindingSource.Current;
+            _customerView.CustomerId =customer.CustomerId.ToString();
+            _customerView.CompanyName = customer.CompanyName.ToString();
+            _customerView.ContactName = customer.ContactName?.ToString();
+            _customerView.ContactTitle = customer.ContactTitle?.ToString();
+            _customerView.Address = customer.Address?.ToString();
+            _customerView.City = customer.City?.ToString();
+            _customerView.Region = customer.Region?.ToString();
+            _customerView.PostalCode = customer.PostalCode?.ToString();
+            _customerView.Country = customer.Country?.ToString();
+            _customerView.Phone = customer.Phone?.ToString();
+            _customerView.Fax = customer.Fax?.ToString();
+            _customerView.IsEdit = true;
         }
 
         private void SaveCustomer(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var customerModel = new Customer();
+            customerModel.CustomerId = _customerView.CustomerId.ToString();
+            customerModel.CompanyName = _customerView.CompanyName.ToString();
+            customerModel.ContactName = _customerView.ContactName.ToString();
+            customerModel.ContactTitle = _customerView.ContactTitle.ToString();
+            customerModel.Address = _customerView.Address.ToString();
+            customerModel.City = _customerView.City.ToString();
+            customerModel.Region = _customerView.Region.ToString();
+            customerModel.PostalCode = _customerView.PostalCode.ToString();
+            customerModel.Country = _customerView.Country.ToString();
+            customerModel.Phone = _customerView.Phone.ToString();
+            customerModel.Fax = _customerView.Fax.ToString();
+            try
+            {
+                new Common.ModelDataValidation().Validate(customerModel);
+                //Edit model
+                if (_customerView.IsEdit)
+                {
+                    _customerRepository.Edit(customerModel);
+                    _customerView.Message = "Customer edited successfully!";
+                }
+                //Add new model
+                else
+                {
+                    _customerRepository.Add(customerModel);
+                    _customerView.Message = "Customer added successfully!";
+                }
+                _customerView.IsSuccessful = true;
+                LoadAllCustomerList();
+                CleanViewFields();
+            }
+            catch (Exception ex)
+            {
+                _customerView.IsSuccessful = false;
+                _customerView.Message = ex.Message;
+            }
+
         }
 
-        private void DeleteCustomer(object? sender, EventArgs e)
+        private void CleanViewFields()
         {
-            throw new NotImplementedException();
+            _customerView.CustomerId = "";
+            _customerView.CompanyName = "";
+            _customerView.ContactName = "";
+            _customerView.ContactTitle = "";
+            _customerView.Address = "";
+            _customerView.City = "";
+            _customerView.Region = "";
+            _customerView.PostalCode = "";
+            _customerView.Country = "";
+            _customerView.Phone = "";
+            _customerView.Fax = "";
         }
 
-        private void EditCustomer(object? sender, EventArgs e)
+        private void CancleAction(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            CleanViewFields();
         }
 
-        private void AddNewCustomer(object? sender, EventArgs e)
+        private void DeleteSelectedCustomer(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var customer = (Customer)_customerbindingSource.Current;
+                _customerRepository.Delete(customer.CustomerId);
+                _customerView.IsSuccessful = true;
+                _customerView.Message = "Customer deleted successfully!";
+                LoadAllCustomerList();  
+            }
+            catch (Exception ex)
+            {
+                _customerView.IsSuccessful = false;
+                _customerView.Message = "An error ocurred, could not delete customer!";
+                throw;
+            }
         }
-
     }
 }

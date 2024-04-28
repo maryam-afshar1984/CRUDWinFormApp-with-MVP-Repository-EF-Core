@@ -35,10 +35,12 @@ public partial class Customer
 
     [DisplayName("Customer City")]
     [StringLength(15, ErrorMessage = "City cannot exceed 15 characters!")]
+    [RegularExpression(@"^[A-Za-zöäüßÖÄÜ\séÉáÁúÚèÈ´ñÁÉÍÓÚáéíóú`]*$", ErrorMessage = "City can only contain letters, spaces, and specific special characters.")]
     public string? City { get; set; }
 
     [DisplayName("Customer Region")]
     [StringLength(15, ErrorMessage = "Region cannot exceed 15 characters!")]
+    [RegularExpression(@"^[A-Za-zöäüßÖÄÜ\séÉáÁúÚèÈ´ñÁÉÍÓÚáéíóú`]*$", ErrorMessage = "Region can only contain letters, spaces, and specific special characters.")]
     public string? Region { get; set; }
 
     [DisplayName("Customer PostalCode")]
@@ -60,7 +62,4 @@ public partial class Customer
     [RegularExpression(@"^[\d()\-\.]+$", ErrorMessage = "Fax can contain only digits, parentheses (), hyphens (-), and periods (.).")]
     public string? Fax { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-
-    public virtual ICollection<CustomerDemographic> CustomerTypes { get; set; } = new List<CustomerDemographic>();
 }

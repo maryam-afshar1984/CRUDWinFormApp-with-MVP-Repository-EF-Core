@@ -1,9 +1,6 @@
 {
-  "Database": {
-    "ConnectionString": "Server=.;Database=USE Northwind;
-;User Id=NorthwindLoginName;Password=LoginToDB2024;"
-  },
-  "Logging": {
-    "LogLevel": "Debug"
+  "ConnectionStrings": {
+    "MyConnectionString": "Server=.;Database=Northwind;User Id=NorthwindLoginName;Password=LoginToDB2024;TrustServerCertificate=True"
   }
 }
+

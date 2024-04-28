@@ -13,17 +13,14 @@ namespace NorthwindWinFormsApp
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-
-            ICustomerView view = new CustomerView();
-            ICustomerRepository repository = new CustomerRepository();
-            new CustomerPresenter(view, repository);
-
             ApplicationConfiguration.Initialize();
+            Application.SetCompatibleTextRenderingDefault(false);
 
+            IMainView view = new MainView();
+            new MainPresenter(view);
 
             Application.Run((Form)view);
+
         }
     }
 }
