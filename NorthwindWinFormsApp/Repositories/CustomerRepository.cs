@@ -33,7 +33,8 @@ namespace NorthwindWinFormsApp.Repositories
                             new SqlParameter("@Fax", customer.Fax)
 
                 };
-                context.Database.ExecuteSqlRaw("EXEC InsertCustomer @CustomerId, @CompanyName, @ContactName, @ContactTitle, @Address, @City, @Region, @PostalCode, @Country, @Phone, @Fax", parameters);
+                context.Database.ExecuteSqlRaw("EXEC InsertCustomer @CustomerId, @CompanyName, @ContactName," +
+                    " @ContactTitle, @Address, @City, @Region, @PostalCode, @Country, @Phone, @Fax", parameters);
 
             }
 

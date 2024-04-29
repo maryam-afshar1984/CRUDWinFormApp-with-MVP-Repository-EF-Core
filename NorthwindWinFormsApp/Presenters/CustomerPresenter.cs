@@ -104,7 +104,9 @@ namespace NorthwindWinFormsApp.Presenters
             customerModel.Fax = customerView.Fax.ToString();
             try
             {
+                //Chech data validation
                 new Common.ModelDataValidation().Validate(customerModel);
+
                 //Edit model
                 if (customerView.IsEdit)
                 {

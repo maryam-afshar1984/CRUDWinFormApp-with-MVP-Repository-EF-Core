@@ -52,7 +52,6 @@ public partial class Customer
     [DisplayName("Customer Phone")]
     [StringLength(24, ErrorMessage = "Phone number exceed 24 characters!")]
     [RegularExpression(@"^[\d()\-\. ]+$", ErrorMessage = "Phone number can contain only digits, parentheses (), hyphens (-), periods (.), and spaces.")]
-
     public string? Phone { get; set; }
 
     [DisplayName("Customer Fax")]

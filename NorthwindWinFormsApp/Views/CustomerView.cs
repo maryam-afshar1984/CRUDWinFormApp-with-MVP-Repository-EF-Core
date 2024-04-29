@@ -61,7 +61,8 @@ namespace NorthwindWinFormsApp.Views
             //Delete
             btnDelete.Click += delegate 
             { 
-                var result = MessageBox.Show("Are you sure you want to delete the selected customer?","Warning",MessageBoxButtons.YesNo,
+                var result = MessageBox.Show("Are you sure you want to delete the selected customer?",
+                    "Warning",MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
