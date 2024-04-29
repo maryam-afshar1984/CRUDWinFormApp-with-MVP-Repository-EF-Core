@@ -9,10 +9,7 @@ public partial class Customer
 {
     [DisplayName("Customer Id")]
     [Required(ErrorMessage = "Customer Id is required!")]
-   // [StringLength(5, ErrorMessage = "Customer Id must be 5 characters!")]
-    //[RegularExpression("^[A-Z]*$", ErrorMessage = "Customer Id must contain only capital letters A-Z.")]
     [RegularExpression(@"^[A-Z]{5}$", ErrorMessage = "Customer Id must be exactly 5 capital letters A-Z.")]
-
     public string CustomerId { get; set; } = null!;
 
     [DisplayName("Company Name")]
