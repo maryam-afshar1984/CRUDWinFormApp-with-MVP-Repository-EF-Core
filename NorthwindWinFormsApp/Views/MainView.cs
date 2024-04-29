@@ -16,11 +16,10 @@ namespace NorthwindWinFormsApp.Views
         {
             InitializeComponent();
             btnCustomerView.Click += delegate { ShowCustomerView?.Invoke(this, EventArgs.Empty); };
+            btnInvoices.Click += delegate { ShowInvoicesCustomerView?.Invoke(this, EventArgs.Empty); };
         }
 
         public event EventHandler ShowCustomerView;
-        public event EventHandler ShowInvoicesView;
-
-       
+        public event EventHandler ShowInvoicesCustomerView;
     }
 }

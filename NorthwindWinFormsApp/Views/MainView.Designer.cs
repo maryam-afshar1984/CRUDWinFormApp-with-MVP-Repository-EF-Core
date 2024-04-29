@@ -30,12 +30,14 @@
         {
             MainPanel = new Panel();
             btnCustomerView = new Button();
+            btnInvoices = new Button();
             MainPanel.SuspendLayout();
             SuspendLayout();
             // 
             // MainPanel
             // 
             MainPanel.BackColor = SystemColors.ControlLightLight;
+            MainPanel.Controls.Add(btnInvoices);
             MainPanel.Controls.Add(btnCustomerView);
             MainPanel.Dock = DockStyle.Left;
             MainPanel.Location = new Point(0, 0);
@@ -52,6 +54,16 @@
             btnCustomerView.TabIndex = 1;
             btnCustomerView.Text = "Customer";
             btnCustomerView.UseVisualStyleBackColor = true;
+            // 
+            // btnInvoices
+            // 
+            btnInvoices.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnInvoices.Location = new Point(3, 222);
+            btnInvoices.Name = "btnInvoices";
+            btnInvoices.Size = new Size(222, 36);
+            btnInvoices.TabIndex = 2;
+            btnInvoices.Text = "Customer Invoices";
+            btnInvoices.UseVisualStyleBackColor = true;
             // 
             // MainView
             // 
@@ -72,5 +84,6 @@
 
         private Panel MainPanel;
         private Button btnCustomerView;
+        private Button btnInvoices;
     }
 }

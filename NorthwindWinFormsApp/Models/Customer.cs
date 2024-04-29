@@ -35,7 +35,7 @@ public partial class Customer
 
     [DisplayName("Customer City")]
     [StringLength(15, ErrorMessage = "City cannot exceed 15 characters!")]
-    [RegularExpression(@"^[A-Za-zöäüßÖÄÜ\séÉáÁúÚèÈ´ñÁÉÍÓÚáéíóú`]*$", ErrorMessage = "City can only contain letters, spaces, and specific special characters.")]
+    [RegularExpression(@"^[A-Za-zöäüßÖÄÜ\séÉáÁúÚèÈ´ñÁÉÍÓÚáéíóú`.\s]*$", ErrorMessage = "City can only contain letters, spaces, dots, and specific characters.")]
     public string? City { get; set; }
 
     [DisplayName("Customer Region")]
@@ -54,12 +54,13 @@ public partial class Customer
 
     [DisplayName("Customer Phone")]
     [StringLength(24, ErrorMessage = "Phone number exceed 24 characters!")]
-    [RegularExpression(@"^[\d()\-\.]+$", ErrorMessage = "Phone number can contain only digits, parentheses (), hyphens (-), and periods (.).")]
+    [RegularExpression(@"^[\d()\-\. ]+$", ErrorMessage = "Phone number can contain only digits, parentheses (), hyphens (-), periods (.), and spaces.")]
+
     public string? Phone { get; set; }
 
     [DisplayName("Customer Fax")]
     [StringLength(24, ErrorMessage = "Fax exceed 24 characters!")]
-    [RegularExpression(@"^[\d()\-\.]+$", ErrorMessage = "Fax can contain only digits, parentheses (), hyphens (-), and periods (.).")]
+    [RegularExpression(@"^[\d()\-\. ]+$", ErrorMessage = "Fax can contain only digits, parentheses (), hyphens (-), periods (.), and spaces.")]
     public string? Fax { get; set; }
 
 }

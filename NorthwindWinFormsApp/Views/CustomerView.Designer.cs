@@ -109,6 +109,7 @@
             CustomerDataGridView.Name = "CustomerDataGridView";
             CustomerDataGridView.Size = new Size(1067, 366);
             CustomerDataGridView.TabIndex = 6;
+            CustomerDataGridView.RowPrePaint += CustomerDataGridView_RowPrePaint;
             // 
             // btnUpdate
             // 

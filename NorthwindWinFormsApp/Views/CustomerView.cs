@@ -21,18 +21,6 @@ namespace NorthwindWinFormsApp.Views
         private string message;
         private bool isSuccessful;
         private bool isEdit;
-        //private string searchValue;
-        //private string fax;
-        //private string phone;
-        //private string country;
-        //private string postalCode;
-        //private string region;
-        //private string city;
-        //private string address;
-        //private string contactTitle;
-        //private string contactName;
-        //private string companyName;
-        //private string customerId;
 
         //Cunstractor
         public CustomerView()
@@ -177,9 +165,6 @@ namespace NorthwindWinFormsApp.Views
             get { return message; }
             set { message = value; }
         }
-        //string ICustomerView.CompanyName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        //string ICustomerView.Region { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
 
         //Events
         public event EventHandler SearchEvent;
@@ -188,6 +173,22 @@ namespace NorthwindWinFormsApp.Views
         public event EventHandler DeleteEvent;
         public event EventHandler SaveEvent;
         public event EventHandler CancleEvent;
+
+        private void CustomerDataGridView_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            // Check if the row is not the header row and its index is odd
+            if (e.RowIndex % 2 != 0 && e.RowIndex != CustomerDataGridView.RowCount - 1)
+            {
+                // Set the background color of the row
+                CustomerDataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGray;
+            }
+            else
+            {
+                // Reset the background color of the row to the default color
+                CustomerDataGridView.Rows[e.RowIndex].DefaultCellStyle.BackColor = CustomerDataGridView.DefaultCellStyle.BackColor;
+            }
+        }
+
 
         //Methods
         public void SetCustomerListBindingSource(BindingSource customerList)

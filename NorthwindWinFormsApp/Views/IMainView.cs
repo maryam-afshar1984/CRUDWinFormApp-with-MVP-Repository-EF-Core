@@ -9,7 +9,6 @@ namespace NorthwindWinFormsApp.Views
     public interface IMainView
     {
         event EventHandler ShowCustomerView;
-        event EventHandler ShowInvoicesView;
-
+        event EventHandler ShowInvoicesCustomerView;
     }
 }

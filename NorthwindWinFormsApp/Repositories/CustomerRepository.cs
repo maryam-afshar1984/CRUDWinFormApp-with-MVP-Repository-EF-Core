@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NorthwindWinFormsApp.Configuration;
-using NorthwindWinFormsApp.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Microsoft.EntityFrameworkCore;
@@ -52,7 +51,6 @@ namespace NorthwindWinFormsApp.Repositories
                 context.Database.ExecuteSqlRaw("EXEC DeleteCustomer @CustomerId", customerIdParam);
             }
         }
-
 
         public void Edit(Customer customer)
         {
