@@ -29,4 +29,5 @@ The solution:
 14. DBContex is used to retrieve data from the database for the “Customers” table or the “CombinedInvoicesAndCustomers” view and also to insert, update and, delete data in relation to the “Customers” table.
 15. The design patterns Singleton and Dependency Injection are used in the APP.
 16. To validate the user input, the DataAnnotations of the Customer class are added to the model. In addition, the ModelDataValidation class was created to consider all DataAnnotations from the Customer model class.
-17. Finally the xUnit Test is added to the project.
+17. Repository interfaces and classes are used to manage data access and manipulation for entities, including events for interacting with data, such as create, read, update and delete (CRUD) operations.
+18. Finally the xUnit Test is added to the project.
