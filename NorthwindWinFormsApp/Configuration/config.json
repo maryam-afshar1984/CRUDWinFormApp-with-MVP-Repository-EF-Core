@@ -1,6 +1,0 @@
-{
-  "ConnectionStrings": {
-    "MyConnectionString": "Server=.;Database=Northwind;User Id=NorthwindLoginName;Password=LoginToDB2024;TrustServerCertificate=True"
-  }
-}
-

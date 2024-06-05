@@ -11,7 +11,11 @@ namespace NorthwindWinFormsApp.Configuration
     {
         public static AppConfig LoadConfiguration()
         {
-            string configFilePath = "F:\\CodeChalange\\NorthwindWinFormsApp\\NorthwindWinFormsApp\\Configuration\\config.json";
+            // Get the base directory of the executable
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Combine the base directory with the relative path to the config file
+            string configFilePath = Path.Combine(baseDirectory, "config.json");
 
             if (!File.Exists(configFilePath))
             {

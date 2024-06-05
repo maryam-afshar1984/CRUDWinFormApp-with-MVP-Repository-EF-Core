@@ -7,6 +7,9 @@ using NorthwindWinFormsApp.Views;
 using NorthwindWinFormsApp.Models;
 using NorthwindWinFormsApp.Configuration;
 using NorthwindWinFormsApp.Repositories;
+using Microsoft.Data.SqlClient;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace NorthwindWinFormsApp.Presenters
 {
@@ -123,10 +126,21 @@ namespace NorthwindWinFormsApp.Presenters
                 LoadAllCustomerList();
                 CleanViewFields();
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 customerView.IsSuccessful = false;
-                customerView.Message = ex.Message;
+
+                // Check if the exception is an SqlException
+                if (ex is SqlException sqlEx && sqlEx.Number == 547)
+                {
+                    // Handle the specific SQL exception with error code 547
+                    customerView.Message = "Foreign key violation. Cannot delete or update a parent row.";
+                }
+                else
+                {
+                    // Handle other exceptions
+                    customerView.Message = ex.Message;
+                }
             }
 
         }
